@@ -4,52 +4,68 @@
   <meta charset="UTF-8">
   <title>Flowers</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #0d0d0d;
-      color: #cceeff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3c72, #2a0845);
+      color: #fbeaff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      padding: 100px 20px;
       overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 90%;
     }
 
     .greetings {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 8px;
-      height: 100px;
+      margin-bottom: 40px;
     }
 
     .letter {
-      font-size: 3em;
+      font-size: 3.2em;
       font-weight: bold;
       opacity: 0;
-      transform: translateX(0);
-      transition: all 0.5s ease;
+      transform: scale(0.6) translateY(20px);
+      transition: all 0.5s ease-in-out;
+      color: #f9d8ff;
+      text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
     }
 
     .from-left {
-      transform: translateX(-150px);
+      transform: translateX(-150px) scale(0.6);
     }
 
     .from-right {
-      transform: translateX(150px);
+      transform: translateX(150px) scale(0.6);
     }
 
     .appear {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateX(0) scale(1);
     }
 
     .disappear {
       opacity: 0;
-      transform: translateY(-20px);
+      transform: translateY(-20px) scale(0.8);
     }
 
     .description {
-      font-size: 1.2em;
-      color: #ffffffbb;
-      margin-top: 40px;
+      font-size: 1.3em;
+      color: #ffffffcc;
+      margin-top: 20px;
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
@@ -64,47 +80,49 @@
 
     .button a {
       text-decoration: none;
-      padding: 12px 24px;
-      background-color: #1e90ff;
+      padding: 14px 28px;
+      background: linear-gradient(90deg, #ff8ae2, #b18bff);
       color: white;
-      border-radius: 8px;
+      border-radius: 30px;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      font-size: 1.1em;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .button a:hover {
-      background-color: #0b6fc2;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
 <body>
 
-  <div class="greetings" id="greetings">
-    <!-- Alternatif kiri-kanan -->
-    <span class="letter from-left">T</span>
-    <span class="letter from-right">I</span>
-    <span class="letter from-left">A</span>
-    <span class="letter from-right">N</span>
-    <span class="letter from-left">U</span>
-    <span class="letter from-right">R</span>
-    <span class="letter from-left">F</span>
-    <span class="letter from-right">A</span>
-    <span class="letter from-left">D</span>
-    <span class="letter from-right">I</span>
-    <span class="letter from-left">L</span>
-    <span class="letter from-right">L</span>
-    <span class="letter from-left">A</span>
-    <span class="letter from-right">H</span>
-  </div>
+  <div class="container">
+    <div class="greetings" id="greetings">
+      <span class="letter from-left">T</span>
+      <span class="letter from-right">I</span>
+      <span class="letter from-left">A</span>
+      <span class="letter from-right">N</span>
+      <span class="letter from-left">U</span>
+      <span class="letter from-right">R</span>
+      <span class="letter from-left">F</span>
+      <span class="letter from-right">A</span>
+      <span class="letter from-left">D</span>
+      <span class="letter from-right">I</span>
+      <span class="letter from-left">L</span>
+      <span class="letter from-right">L</span>
+      <span class="letter from-left">A</span>
+      <span class="letter from-right">H</span>
+    </div>
 
-  <div class="description" id="desc">
-    *aku ada hadiah spesial buat kamu!
-  </div>
+    <div class="description" id="desc">
+      ✨ Aku ada hadiah spesial buat kamu! 🌸
+    </div>
 
-  <div class="button">
-    <button>
-      <a href="flower.html">Klik di sini</a>
-    </button>
+    <div class="button">
+      <a href="flower.html">🌷 Klik di sini 🌷</a>
+    </div>
   </div>
 
   <script>
@@ -122,14 +140,12 @@
 
         setTimeout(() => {
           animateLetters(index + 1);
-        }, 200); // jeda antar huruf
+        }, 200);
       } else {
-        // Setelah semua huruf selesai, munculkan deskripsi
         setTimeout(() => {
           desc.classList.add('show');
         }, 500);
 
-        // Hilangkan deskripsi dan reset semua huruf
         setTimeout(() => {
           desc.classList.remove('show');
           resetLetters();
@@ -140,7 +156,6 @@
     function resetLetters() {
       letters.forEach((letter, i) => {
         letter.classList.remove('appear', 'disappear');
-        // ulang class posisi
         if (i % 2 === 0) {
           letter.classList.add('from-left');
         } else {
