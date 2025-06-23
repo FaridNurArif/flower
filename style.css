@@ -984,3 +984,24 @@ mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
 .not-loaded * {
   animation-play-state: paused !important;
 }
+
+.sweet-text {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    text-align: center;
+    font-size: 1.4em;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeInText 3s ease-in-out forwards;
+  }
+  
+  @keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+    100% { opacity: 1; transform: translateY(0) translateX(-50%); }
+  }
+  
+  
